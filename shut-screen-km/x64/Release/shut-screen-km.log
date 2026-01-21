@@ -1,0 +1,7 @@
+﻿  Building 'shut-screen-km' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Release\shut-screen-km.inf
+  Stamping [Version] section with DriverVer=01/21/2026,18.40.1.187
+  shut-screen-km.vcxproj -> C:\Users\user\source\repos\shut-screen-km\x64\Release\shut-screen-km.sys
+  Driver is 'Universal'.
+  DrvCat task was skipped as there was no catalog file to process
+  

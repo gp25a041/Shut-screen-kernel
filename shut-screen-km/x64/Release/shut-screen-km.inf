@@ -1,0 +1,62 @@
+;
+; shut-screen-km.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = System ; TODO: specify appropriate Class
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider    = %ManufacturerName%
+CatalogFile = shut-screen-km.cat
+DriverVer = 01/21/2026,18.40.1.187
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+shut-screen-km.sys = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64.10.0...16299 ; %13% support introduced in build 16299
+
+[Standard.NTamd64.10.0...16299]
+%shut-screen-km.DeviceDesc% = shut-screen-km_Device, Root\shut-screen-km ; TODO: edit hw-id
+
+[shut-screen-km_Device.NT]
+CopyFiles = File_Copy
+
+[File_Copy]
+shut-screen-km.sys
+
+;-------------- Service installation
+[shut-screen-km_Device.NT.Services]
+AddService = shut-screen-km,%SPSVCINST_ASSOCSERVICE%, shut-screen-km_Service_Inst
+
+; -------------- shut-screen-km driver install sections
+[shut-screen-km_Service_Inst]
+DisplayName    = %shut-screen-km.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %13%\shut-screen-km.sys
+
+[shut-screen-km_Device.NT.Wdf]
+KmdfService = shut-screen-km, shut-screen-km_wdfsect
+
+[shut-screen-km_wdfsect]
+KmdfLibraryVersion = 1.15
+
+[Strings]
+SPSVCINST_ASSOCSERVICE = 0x00000002
+ManufacturerName = "<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "shut-screen-km Installation Disk"
+shut-screen-km.DeviceDesc = "shut-screen-km Device"
+shut-screen-km.SVCDESC = "shut-screen-km Service"
