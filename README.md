@@ -1,5 +1,6 @@
 # Shut-screen-kernel
 windows10-22H2 version
+
 Windows kernel-level display affinity enforcement tool. Prevents screen capture by calling win32kfull internal functions.
 （Windowsカーネルレベルのディスプレイアフィニティ強​​制ツール。win32kfull内部関数を呼び出すことで、画面キャプチャを防止します）
 
